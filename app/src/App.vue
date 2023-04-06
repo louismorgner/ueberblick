@@ -1,26 +1,47 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="app-container">
+    <TheCanvas ref="canvasRef" />
+    <div class="block-types-container">
+      <BlockType
+        v-for="(blockType, index) in blockTypes"
+        :key="index"
+        :name="blockType.name"
+      />
+    </div>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import TheCanvas from './components/TheCanvas.vue';
+import BlockType from './components/BlockType.vue';
 
 export default {
-  name: 'App',
   components: {
-    HelloWorld
+    TheCanvas,
+    BlockType
+  },
+  data() {
+    return {
+      blockTypes: [
+        { name: 'openAi' },
+        { name: 'customCode' }
+      ]
+    };
   }
 }
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+<style scoped>
+.app-container {
+  display: flex;
 }
+
+.block-types-container {
+  /* Define styles for the block types container */
+  padding: 10px;
+  margin-left: 20px;
+  border: 1px solid #ddd;
+  width: 150px;
+}
+
 </style>
